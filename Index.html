@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aparador Digital — Webs per a comerç local</title>
+<meta name="description" content="Dissenyem i posem en marxa la web del teu negoci: perruqueries, tallers, floristeries, restaurants i botigues de barri.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1F1D; --ink-2:#16302C; --ink-3:#1C3A35;
+    --paper:#F1EDE0; --paper-dim:#C9C3AF;
+    --accent:#E8A23A; --accent-ink:#3A2708;
+    --accent-2:#3FBFA6; --muted:#7C9490;
+    --line: rgba(241,237,224,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--ink); color:var(--paper);
+    font-family:'Karla',system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .display{font-family:'Bricolage Grotesque',sans-serif;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(15,31,29,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .headbar{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand svg{width:38px; height:38px;}
+  .brand .word{font-weight:800; font-size:19px; letter-spacing:-0.01em;}
+  nav{display:flex; gap:28px; font-size:14.5px; font-weight:600;}
+  nav a{text-decoration:none; color:var(--paper-dim); transition:color .15s;}
+  nav a:hover{color:var(--paper);}
+  .nav-cta{
+    background:var(--accent); color:var(--accent-ink); padding:9px 18px;
+    border-radius:999px; font-weight:800; font-size:14px; text-decoration:none;
+  }
+  @media (max-width:720px){ nav .nav-links{display:none;} }
+
+  /* hero */
+  .hero{
+    padding:88px 0 70px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(560px 360px at 82% 10%, rgba(63,191,166,0.14), transparent 65%),
+      radial-gradient(600px 420px at 10% 100%, rgba(232,162,58,0.08), transparent 60%);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center;}
+  @media (max-width:820px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:20px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent-2);}
+  h1{
+    font-size:clamp(38px,5.6vw,58px); line-height:1.05; letter-spacing:-0.015em;
+    margin:0 0 22px; text-wrap:balance;
+  }
+  h1 .hl{color:var(--accent);}
+  .lede{font-size:18px; line-height:1.6; color:var(--paper-dim); max-width:46ch; margin:0 0 32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:12px; font-weight:800; font-size:15px;
+    text-decoration:none; border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent); color:var(--accent-ink);}
+  .btn-ghost{border-color:var(--line); color:var(--paper);}
+
+  .hero-card{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:22px;
+    padding:34px; box-shadow:0 30px 60px rgba(0,0,0,0.35);
+  }
+  .hero-card .mark-big{width:96px; height:96px; display:block; margin-bottom:22px;}
+  .hero-card .offer-pill{
+    display:inline-block; background:rgba(232,162,58,0.14); color:var(--accent);
+    border:1px solid rgba(232,162,58,0.35); border-radius:999px;
+    font-size:12.5px; font-weight:800; letter-spacing:0.04em; text-transform:uppercase;
+    padding:6px 14px; margin-bottom:16px;
+  }
+  .hero-card h3{font-size:22px; margin:0 0 10px; line-height:1.25;}
+  .hero-card p{font-size:14.5px; color:var(--paper-dim); line-height:1.55; margin:0;}
+
+  /* sections shell */
+  section{padding:70px 0; border-bottom:1px solid var(--line);}
+  .kicker{font-size:12px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-2); margin:0 0 14px;}
+  h2{font-size:clamp(26px,3.4vw,34px); margin:0 0 16px; letter-spacing:-0.01em; text-wrap:balance;}
+  .section-lede{font-size:16.5px; color:var(--paper-dim); max-width:60ch; line-height:1.65; margin:0 0 40px;}
+
+  /* services */
+  .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
+  .svc{background:var(--ink-2); border:1px solid var(--line); border-radius:16px; padding:26px;}
+  .svc .n{font-size:12px; color:var(--muted); font-weight:800; letter-spacing:0.06em;}
+  .svc h3{font-size:19px; margin:14px 0 8px;}
+  .svc p{font-size:14.5px; color:var(--paper-dim); line-height:1.55; margin:0;}
+
+  /* sectors */
+  .sector-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .sector-chip{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:999px;
+    padding:10px 18px; font-size:14.5px; font-weight:600; color:var(--paper);
+  }
+
+  /* portfolio */
+  .portfolio-card{
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+    background:linear-gradient(135deg, var(--ink-3), var(--ink-2));
+    border:1px solid var(--line); border-radius:20px; padding:34px 36px;
+    flex-wrap:wrap;
+  }
+  .portfolio-card h3{font-size:23px; margin:0 0 8px;}
+  .portfolio-card p{font-size:15px; color:var(--paper-dim); margin:0; max-width:44ch;}
+
+  /* offer */
+  .offer-band{
+    background:var(--accent); color:var(--accent-ink); border-radius:24px;
+    padding:44px 40px; display:flex; align-items:center; gap:36px; flex-wrap:wrap;
+  }
+  .offer-band .num{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:64px; line-height:0.9;}
+  .offer-band .num span{font-size:28px; vertical-align:10px;}
+  .offer-band .divider{width:2px; align-self:stretch; background:rgba(58,39,8,0.28); border-radius:2px;}
+  .offer-band .text{font-size:19px; font-weight:700; line-height:1.5; max-width:26em; flex:1;}
+  .offer-band .tag{display:block; font-size:12.5px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; opacity:0.72; margin-bottom:6px;}
+  .offer-band .btn-primary{background:var(--accent-ink); color:var(--paper);}
+
+  /* footer / contact */
+  footer{padding:56px 0 40px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;}
+  .foot-brand{display:flex; align-items:center; gap:12px;}
+  .foot-brand svg{width:34px; height:34px;}
+  .foot-brand .word{font-weight:800; font-size:17px;}
+  .foot-links{display:flex; gap:22px; font-size:14px; color:var(--paper-dim);}
+  .foot-links a{text-decoration:none;}
+  .foot-links a:hover{color:var(--paper);}
+  .copy{margin-top:36px; font-size:13px; color:var(--muted); text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap headbar">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs><radialGradient id="g1" cx="50%" cy="30%" r="80%"><stop offset="0%" stop-color="#1C3A35"/><stop offset="100%" stop-color="#0F1F1D"/></radialGradient></defs>
+        <rect x="8" y="8" width="184" height="184" rx="42" fill="url(#g1)"/>
+        <path d="M100,42 L156,158 L132,158 L121,133 L79,133 L68,158 L44,158 Z M100,78 L87,116 L113,116 Z" fill="#E8A23A" fill-rule="evenodd"/>
+        <rect x="100" y="146" width="34" height="9" rx="4.5" fill="#3FBFA6"/>
+      </svg>
+      <span class="word display">Aparador Digital</span>
+    </a>
+    <nav>
+      <div class="nav-links" style="display:flex; gap:28px;">
+        <a href="#serveis">Serveis</a>
+        <a href="#plantilles">Plantilles</a>
+        <a href="#oferta">Oferta</a>
+      </div>
+      <a class="nav-cta" href="#contacte">Contacta</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Webs per a comerç local</div>
+      <h1 class="display">La teva web,<br/>feta <span class="hl">a mida.</span></h1>
+      <p class="lede">Dissenyem i posem en marxa la pàgina web del teu negoci — perruqueries, tallers, floristeries, restaurants i botigues de barri. Disseny, hosting i posada en marxa, tot inclòs.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contacte">Demana pressupost gratuït</a>
+        <a class="btn btn-ghost" href="#plantilles">Veure exemples →</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <svg class="mark-big" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs><radialGradient id="g2" cx="50%" cy="30%" r="80%"><stop offset="0%" stop-color="#1C3A35"/><stop offset="100%" stop-color="#0F1F1D"/></radialGradient></defs>
+        <rect x="8" y="8" width="184" height="184" rx="42" fill="url(#g2)"/>
+        <path d="M100,42 L156,158 L132,158 L121,133 L79,133 L68,158 L44,158 Z M100,78 L87,116 L113,116 Z" fill="#E8A23A" fill-rule="evenodd"/>
+        <rect x="100" y="146" width="34" height="9" rx="4.5" fill="#3FBFA6"/>
+      </svg>
+      <div class="offer-pill">Oferta de llançament</div>
+      <h3 class="display">10% de descompte + pressupost gratuït</h3>
+      <p>Places limitades per als primers negocis que confien en nosaltres. Sense compromís.</p>
+    </div>
+  </div>
+</section>
+
+<section id="serveis">
+  <div class="wrap">
+    <p class="kicker">Què fem</p>
+    <h2 class="display">Tot el que necessita el teu negoci per ser-hi, a internet</h2>
+    <p class="section-lede">No et venem "una pàgina web" solta: t'acompanyem des del primer esbós fins que el teu negoci es pugui trobar i contactar sense friccions.</p>
+    <div class="services-grid">
+      <div class="svc"><div class="n">01</div><h3 class="display">Disseny a mida</h3><p>Una web pensada pel teu ofici i el teu públic, no una plantilla genèrica sense ànima.</p></div>
+      <div class="svc"><div class="n">02</div><h3 class="display">Hosting inclòs</h3><p>Allotjament, domini i correu corporatiu gestionats per nosaltres — tu no t'has de preocupar de res tècnic.</p></div>
+      <div class="svc"><div class="n">03</div><h3 class="display">Posada en marxa</h3><p>Publiquem la web, la connectem a Google Maps i xarxes, i la deixem llesta per rebre clients.</p></div>
+      <div class="svc"><div class="n">04</div><h3 class="display">Acompanyament</h3><p>Un cop en marxa, seguim disponibles per a canvis, dubtes o petites millores.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sectors">
+  <div class="wrap">
+    <p class="kicker">Per a qui</p>
+    <h2 class="display">Comerç i serveis de proximitat</h2>
+    <div class="sector-row">
+      <span class="sector-chip">Perruqueries</span>
+      <span class="sector-chip">Barberies</span>
+      <span class="sector-chip">Cafeteries</span>
+      <span class="sector-chip">Tallers mecànics</span>
+      <span class="sector-chip">Restaurants</span>
+      <span class="sector-chip">Floristeries</span>
+      <span class="sector-chip">Gestories</span>
+      <span class="sector-chip">Botigues de roba</span>
+      <span class="sector-chip">Immobiliàries</span>
+      <span class="sector-chip">Clíniques dentals</span>
+    </div>
+  </div>
+</section>
+
+<section id="plantilles">
+  <div class="wrap">
+    <p class="kicker">Portfoli</p>
+    <h2 class="display">Mira com pot quedar la teva web</h2>
+    <p class="section-lede">Tenim exemples ja fets per sector, en dues variants d'estil cadascun, perquè et facis una idea abans de decidir.</p>
+    <div class="portfolio-card">
+      <div>
+        <h3 class="display">Galeria de plantilles</h3>
+        <p>10 sectors, 2 estils per sector — obre'ls i navega'ls com ho faria un client teu.</p>
+      </div>
+      <a class="btn btn-primary" href="https://carlesci.github.io/demos-web/" target="_blank" rel="noopener">Veure la galeria →</a>
+    </div>
+  </div>
+</section>
+
+<section id="oferta" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="offer-band">
+      <div class="num">10<span>%</span></div>
+      <div class="divider"></div>
+      <div class="text">
+        <span class="tag">Oferta de llançament</span>
+        Descompte per als primers negocis + pressupost gratuït, sense compromís.
+      </div>
+      <a class="btn btn-primary" href="#contacte">Ho vull</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contacte">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="g3" cx="50%" cy="30%" r="80%"><stop offset="0%" stop-color="#1C3A35"/><stop offset="100%" stop-color="#0F1F1D"/></radialGradient></defs>
+          <rect x="8" y="8" width="184" height="184" rx="42" fill="url(#g3)"/>
+          <path d="M100,42 L156,158 L132,158 L121,133 L79,133 L68,158 L44,158 Z M100,78 L87,116 L113,116 Z" fill="#E8A23A" fill-rule="evenodd"/>
+          <rect x="100" y="146" width="34" height="9" rx="4.5" fill="#3FBFA6"/>
+        </svg>
+        <span class="word display">Aparador Digital</span>
+      </div>
+      <div class="foot-links">
+        <a href="https://instagram.com/aparador.digital" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://carlesci.github.io/demos-web/" target="_blank" rel="noopener">Plantilles</a>
+        <a href="mailto:hola@aparadordigital.es">hola@aparadordigital.es</a>
+      </div>
+    </div>
+    <p class="copy">© Aparador Digital — Webs per a comerç local</p>
+  </div>
+</footer>
+
+</body>
+</html>
