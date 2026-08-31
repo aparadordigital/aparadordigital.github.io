@@ -132,6 +132,33 @@
   .offer-band .tag{display:block; font-size:12.5px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; opacity:0.72; margin-bottom:6px;}
   .offer-band .btn-primary{background:var(--accent-ink); color:var(--paper);}
 
+  /* contact form */
+  .contact-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:48px; align-items:start;}
+  @media (max-width:820px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-form{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:20px;
+    padding:32px; display:flex; flex-direction:column; gap:16px;
+  }
+  .field{display:flex; flex-direction:column; gap:7px;}
+  .field label{font-size:13px; font-weight:700; color:var(--paper-dim);}
+  .field input, .field textarea{
+    background:var(--ink); border:1px solid var(--line); border-radius:10px;
+    padding:12px 14px; color:var(--paper); font-family:'Karla',sans-serif; font-size:15px;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--accent-2); outline-offset:1px;}
+  .field textarea{resize:vertical; min-height:96px;}
+  .contact-form .submit{
+    align-self:flex-start; border:none; cursor:pointer;
+    background:var(--accent); color:var(--accent-ink);
+    padding:14px 28px; border-radius:12px; font-weight:800; font-size:15px; font-family:'Karla',sans-serif;
+  }
+  .contact-note{font-size:13px; color:var(--muted); margin-top:2px;}
+  .contact-perks{display:flex; flex-direction:column; gap:18px;}
+  .perk{display:flex; gap:14px; align-items:flex-start;}
+  .perk .dot{width:9px; height:9px; border-radius:50%; background:var(--accent-2); margin-top:8px; flex-shrink:0;}
+  .perk h4{margin:0 0 4px; font-size:16.5px;}
+  .perk p{margin:0; font-size:14.5px; color:var(--paper-dim); line-height:1.5;}
+
   /* footer / contact */
   footer{padding:56px 0 40px;}
   .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap;}
@@ -255,7 +282,46 @@
   </div>
 </section>
 
-<footer id="contacte">
+<section id="contacte">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="kicker">Contacte</p>
+      <h2 class="display">Parlem del teu negoci</h2>
+      <p class="section-lede" style="margin-bottom:28px;">Explica'ns en dues línies què necessites i et responem amb el pressupost gratuït en menys de 48 hores.</p>
+      <div class="contact-perks">
+        <div class="perk"><span class="dot"></span><div><h4 class="display">Sense compromís</h4><p>El pressupost no t'obliga a res — decideixes tu si tirem endavant.</p></div></div>
+        <div class="perk"><span class="dot"></span><div><h4 class="display">Resposta ràpida</h4><p>Et contestem directament, sense contestadors ni formularis eterns.</p></div></div>
+        <div class="perk"><span class="dot"></span><div><h4 class="display">10% de descompte</h4><p>Vàlid per als primers negocis que ens escriuen ara, durant el llançament.</p></div></div>
+      </div>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/xgaeogav" method="POST">
+      <input type="hidden" name="_subject" value="Nou contacte des d'Aparador Digital">
+      <input type="text" name="_gotcha" style="display:none">
+
+      <div class="field">
+        <label for="f-name">El teu nom</label>
+        <input id="f-name" type="text" name="name" required>
+      </div>
+      <div class="field">
+        <label for="f-business">Nom del negoci</label>
+        <input id="f-business" type="text" name="business">
+      </div>
+      <div class="field">
+        <label for="f-email">El teu email o telèfon</label>
+        <input id="f-email" type="text" name="contact" required>
+      </div>
+      <div class="field">
+        <label for="f-message">Explica'ns breument què necessites</label>
+        <textarea id="f-message" name="message" required></textarea>
+      </div>
+      <button class="submit" type="submit">Enviar i demanar pressupost</button>
+      <p class="contact-note">En enviar el formulari acceptes que et contactem sobre la teva consulta.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -270,7 +336,7 @@
       <div class="foot-links">
         <a href="https://instagram.com/aparador.digital" target="_blank" rel="noopener">Instagram</a>
         <a href="https://carlesci.github.io/demos-web/" target="_blank" rel="noopener">Plantilles</a>
-        <a href="mailto:hola@aparadordigital.es">hola@aparadordigital.es</a>
+        <a href="#contacte">Escriu-nos</a>
       </div>
     </div>
     <p class="copy">© Aparador Digital — Webs per a comerç local</p>
